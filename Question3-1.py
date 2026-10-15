@@ -28,6 +28,20 @@ k = 1
 W = eigenvectors[:, :k]
 Z = X_centered @ W
 
+#Check PC1 and PC2 that Cv = Lamda(v)
+for i in range(2):
+    v = eigenvectors[:, i]
+    lam = eigenvalues[i]
+
+    print(f"\nChecking PC{i+1}:")
+    print("C @ v =", C @ v)
+    print("lambda * v =", lam * v)
+    print("Valid:", np.allclose(C @ v, lam * v))
+
+#return true if identity matrix
+print(np.allclose(eigenvectors.T @ eigenvectors, np.eye(2)))
+
+
 explained_variance_ratio = eigenvalues / eigenvalues.sum()
 
 #Print
@@ -36,6 +50,7 @@ print("\nCovariance matrix:\n", C)
 print("\nEigenvalues:", eigenvalues)
 print("\nPrincipal components (columns):\n", eigenvectors)
 print("\nExplained variance ratios:", explained_variance_ratio)
+print("Expected Sum of 1.0, The Sum:", explained_variance_ratio.sum())
 print("\nReduced data shape:", Z.shape)
 
 # Visualize the original data and principal component directions.
