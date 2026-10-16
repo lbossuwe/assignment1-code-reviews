@@ -7,7 +7,7 @@ rng = np.random.default_rng(50) #Replaceable seed
 # Two Gaussian features with correlation 0.8
 
 #2D Graph
-data = rng.multivariate_normal(mean = [0,0], cov = [[1, 0.8]], size=1000)
+data = rng.multivariate_normal(mean = [0,0], cov = [[1, 0.8], [0.8,1]], size=1000)
 x, y = data.T
 
 correlation = np.corrcoef(x, y)[0, 1]
